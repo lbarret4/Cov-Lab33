@@ -1,5 +1,5 @@
 import mysql from 'mysql';
-
+import fs from 'fs';
 let pool;
 if (fs.existsSync('db-properties.json')) {
     /* props= {
@@ -10,7 +10,7 @@ if (fs.existsSync('db-properties.json')) {
         "password":"**********"
         }
 */
-    props = JSON.parse(fs.readFileSync('db-properties.json'));
+    let props = JSON.parse(fs.readFileSync('db-properties.json'));
     pool = mysql.createPool(props);
 } else {
     throw new Error(' Cannot find database properties file');
