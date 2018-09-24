@@ -7,3 +7,4 @@ ENV_VAR
 development.js
 README-boilerplate.md
 db-properties.json
+test.js
