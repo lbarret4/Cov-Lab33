@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { render } from 'react-dom';
 import Blogs from './Blogs';
 
 class BlogFeed extends Component {
@@ -18,7 +17,7 @@ class BlogFeed extends Component {
                     <Blogs />
 
                 </div >
-                <hr/>
+                <hr style={{backgroundColor:"#563d7c"}}/>
             </div>
 
         );
