@@ -1,8 +1,11 @@
 import { Router } from 'express';
 import Table from '../table';
+import blogTagsRouter from './blogtags';
 let router = Router();
 
 let blogs = new Table('blogs');
+
+router.use('/blogtags',blogTagsRouter);
 
 router.get('/', async (req, res) => {
     try {
@@ -65,6 +68,8 @@ router.delete('/:id', async (req, res) => {
         res.sendStatus(500);
     }
 });
+
+
 
 
 
