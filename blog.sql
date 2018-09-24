@@ -2,7 +2,6 @@ CREATE TABLE blogs
 (
     id INT NOT NULL auto_increment PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
-    email VARCHAR(254) NOT NULL,
     content TEXT NULL,
     _created DATETIME DEFAULT CURRENT_TIMESTAMP
 
@@ -13,7 +12,6 @@ CREATE TABLE authors
     id INT NOT NULL auto_increment PRIMARY KEY,
     name VARCHAR(60) NOT NULL,
     email VARCHAR(254) NOT NULL,
-    password TEXT NULL,
     _created DATETIME DEFAULT CURRENT_TIMESTAMP
 
 );
@@ -27,7 +25,7 @@ CREATE TABLE tags
 
 );
 
-CREATE TABLE blogstags
+CREATE TABLE blogtags
 (
     blogid INT NOT NULL,
     tagid INT NOT NULL,
@@ -41,3 +39,56 @@ CREATE TABLE blogstags
         REFERENCES tags(id)
         ON DELETE CASCADE
 );
+
+INSERT INTO blogs(title, content)
+VALUES('Blog Title 1','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words'),
+('Blog Title 2','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words'),
+('Blog Title 3','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words'),
+('Blog Title 4','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words'),
+('Blog Title 5','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words');
+
+INSERT INTO authors(name,email)
+VALUES  ('Charles','test1@test.com'),
+        ('Jemma','test2@test.com'),
+        ('Kim','test3@test.com'),
+        ('Amanda','test4@test.com'),
+        ('Kenji','test5@test.com'),
+        ('John','test6@test.com'),
+        ('Candice','test7@test.com'),
+        ('Robert','test8@test.com'),
+        ('Tina','test9@test.com'),
+        ('Patricia','test10@test.com');
+
+INSERT INTO tags(name)
+VALUES  ('food'),      
+        ('coding'),
+        ('fun'),
+        ('sports'),
+        ('games'),
+        ('television'),
+        ('Covalence'),
+        ('javascript'),
+        ('movies'),
+         ('tech');
+
+INSERT INTO blogstags(blogid,tagid)
+VALUES
+(1,1),
+(1,3),
+(1,5),
+(1,4),
+(2,2),
+(2,7),
+(2,8),
+(3,6),
+(3,10),
+(3,2),
+(3,3),
+(4,2),
+(4,10),
+(4,3),
+(5,9),
+(5,6),
+(5,10),
+(5,1),
+(5,3);
