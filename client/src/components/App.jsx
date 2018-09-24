@@ -10,10 +10,12 @@ class Navigation extends Component {
         return (
             <Router>
                 <Fragment>
+                <div className="container">
                     <Navbar />
                     <Switch>
                         <Route exact path="/" component={Home} />
                     </Switch>
+                    </div>
                 </Fragment>
             </Router>
         )
