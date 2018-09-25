@@ -7,26 +7,33 @@ class Blog extends Component {
     }
 
 
+
     render() {
         let title;
-        let truncate="";
+        let truncate = "";
+        let blog = this.props.blog;
+        let divClass;
         if (this.props.type === 'featured') {
-
-            title=<h1 className="display-3">Blog Title</h1>;
-            truncate= "text-truncate";
-
-        } else {
+            title= <h1 className="display-3">{blog.title}</h1>;
+            divClass="col";  
+            truncate="";
+        } else {           
             title=<h2>Blog Title</h2>;
+            divClass="col-md-4 d-flex justify-content-center flex-column";
+            // truncate="text-truncate";
         }
 
         return (
-            <div className="col-md-4 d-flex justify-content-center flex-column">
-                {title}
+            <Fragment>
 
-                <p className={truncate}>Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words .Words .Words. Words. Words <span className="d-inline-block text-truncate" style={{ maxWidth: "150px" }}>Words Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words .Words .Words. Words. Words .Words</span></p>
-
-                <p><a className="btn text-white" href="#" role="button" style={{ backgroundColor: "#563d7c" }}>Read more&raquo;</a></p>
+            <div className={divClass}>
+               {title}
+                <p className={truncate}> {blog.content}</p>
+                <small className="text-muted d-flex justify-content-end">{blog.date.toLocaleDateString()}</small>
+                <p><a className="btn text-white blogBtn" href="#" role="button">Read more&raquo;</a></p>
+                 
             </div>
+        </Fragment>
         );
 
     }
