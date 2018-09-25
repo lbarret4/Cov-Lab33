@@ -6,18 +6,40 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            blogList: []
+        };
     }
+
+    async componentDidMount() {
+        let url = `http://localhost:3000/api/blogs`;
+        try {
+            let results = await fetch(url);
+            let data = await results.json();
+            data = await data.map((item) => {
+                item.date = new Date(item['_created']);
+                delete item["_created"];
+                return (item);
+            })
+            this.setState({
+                blogList: await data
+            })
+        } catch (error) {
+            console.log(error);
+        }
+
+
+
+    }
+
+
 
     render() {
         return (
             <Fragment>
                 <main role="main">
-                    <div className="jumbotron jumbotron-fluid my-1">
-                        <div className="container d-flex flex-row">           
-                            <Blog type='featured' />
-                        </div>
-                    </div>
-                    <BlogFeed />
+
+                    <BlogFeed blogs={this.state.blogList} />
 
                 </main>
 
