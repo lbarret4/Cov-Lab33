@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Blogs from './Blogs';
-
+import Blog from './Blog';
 class BlogFeed extends Component {
 
     constructor(props) {
@@ -9,21 +8,38 @@ class BlogFeed extends Component {
 
 
     render() {
+        let blogs = this.props.blogs;
+        let blogList = blogs.map((blog, index) => {
+            if (index !== 0) {
+                return (
+
+                    <Blog blog={blog} key={blog.date + index} />
+
+                );
+            } else {
+                return (
+                    <div className="jumbotron jumbotron-fluid my-1">
+                        <div className="container">
+                            <Blog type='featured' blog={blog} key={blog.date} />
+                        </div>
+                    </div>
+                );
+            }
+        });
         return (
-            <div className="container">
+            <Fragment>
+                {blogList[0]}
+                <div className="container">
+                    <div className="row">
+                        {blogList.slice(1)}
+                    </div >
+                    <hr />
+                </div>
 
-                <div className="row">
-
-                    <Blogs />
-
-                </div >
-                <hr style={{backgroundColor:"#563d7c"}}/>
-            </div>
+            </Fragment >
 
         );
     }
-
-
 }
 
 export default BlogFeed;
