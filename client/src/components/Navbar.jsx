@@ -6,13 +6,24 @@ class Navbar extends Component {
         super(props);
         this.state = {
             home: 'active',
-            authors: '',            
-            post:'',
-            edit:'',
+            authors: '',
+            post: '',
             contact: '',
+
         };
 
+
         this.handlesOnClick = this.handlesOnClick.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.tab) {
+            this.setState({
+                home: '',
+                [this.props.tab]: 'active'
+            })
+        }
+
     }
 
     handlesOnClick(tab, e) {
@@ -37,11 +48,14 @@ class Navbar extends Component {
     }
 
     render() {
+        let tab = this.props.tab;
+        let tabPath = this.props.path;
         let navList = Object.getOwnPropertyNames(this.state).map((st) => {
-            return(
-            <li className="nav-item">
-                <Link className={`nav-link ${this.state[st]}`} to={st==='home' ?"/":`/${st}`} onClick={this.handlesOnClick.bind(this, st)}>{st[0].toUpperCase()+st.substring(1)}</Link>
-            </li>);
+            let path = (tab && tabPath && tab === st ? tabPath : `/${st}`);
+            return (
+                <li className="nav-item">
+                    <Link className={`nav-link ${this.state[st]}`} to={st === 'home' ? '/' : path} onClick={this.handlesOnClick.bind(this, st)}>{st[0].toUpperCase() + st.substring(1)}</Link>
+                </li>);
         })
 
 
