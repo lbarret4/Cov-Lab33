@@ -39,10 +39,10 @@ class BlogCard extends Component {
         return (
             <Fragment>
                 <Navbar tab={tabTitle} path={this.props.match.url} />
-                <div className="card my-1" style={{ maxWidth: " 90vw" }} >
+                <div className="card my-1 ">
                     <div className="card-header text-center" >{blog.title}</div>
                     <div className="card-body">{blog.content} </div>
-                    <div className="card-footer  text-muted">{blog.date ? blog.date.toLocaleDateString() : blog}</div>
+                    <div className="card-footer text-muted">{blog.date ? blog.date.toLocaleDateString() : blog}</div>
                 </div>
             </Fragment>
         );
