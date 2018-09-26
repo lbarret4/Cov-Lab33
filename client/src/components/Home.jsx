@@ -19,10 +19,10 @@ class Home extends Component {
                 item.date = new Date(item['_created']);
                 delete item["_created"];
                 return (item);
-            })
+            });
             this.setState({
                 blogList: await data
-            })
+            });
         } catch (error) {
             console.log(error);
         }
