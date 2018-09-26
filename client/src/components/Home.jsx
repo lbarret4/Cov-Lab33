@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { render } from 'react-dom';
-import BlogFeed from './BlogFeed'
-import Blog from './Blog';
+import BlogFeed from './BlogFeed';
+import Navbar from './Navbar';
 class Home extends Component {
 
     constructor(props) {
@@ -37,6 +36,7 @@ class Home extends Component {
     render() {
         return (
             <Fragment>
+                <Navbar />
                 <main role="main">
 
                     <BlogFeed blogs={this.state.blogList} />
