@@ -40,12 +40,12 @@ CREATE TABLE blogtags
         ON DELETE CASCADE
 );
 
-INSERT INTO blogs(title, content)
-VALUES('Blog Title 1','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words'),
-('Blog Title 2','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words'),
-('Blog Title 3','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words'),
-('Blog Title 4','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words'),
-('Blog Title 5','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words');
+INSERT INTO blogs(title, content,_created)
+VALUES('Blog Title 1','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words','2018-09-18 09:38:32'),
+('Blog Title 2','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words','2018-09-19 09:38:33'),
+('Blog Title 3','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words','2018-09-20 09:38:34'),
+('Blog Title 4','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words','2018-09-21 09:38:35'),
+('Blog Title 5','Words Words Words .Words .Words .Words. Words. Words .Words Words Words Words .Words','2018-09-24 09:38:36');
 
 INSERT INTO authors(name,email)
 VALUES  ('Charles','test1@test.com'),
