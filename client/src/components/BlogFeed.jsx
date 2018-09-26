@@ -33,7 +33,7 @@ class BlogFeed extends Component {
                     <div className="row">
                         {blogList.slice(1)}
                     </div >
-                    <hr />
+
                 </div>
 
             </Fragment >
