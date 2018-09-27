@@ -1,73 +1,16 @@
 
 import React, { Component, Fragment } from 'react';
 import Navbar from './Navbar';
+import Tags from './Tags';
 
 
 
 class BlogEdit extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            tags: [],
-            isVisible: false
-        }
-        this.handlesOnChange = this.handlesOnChange.bind(this);
-    }
-
-    async componentDidMount() {
-        let url = `http://localhost:3000/api/tags`;
-        try {
-            let results = await fetch(url);
-            let data = await results.json();
-            data.push({ name: 'other', '_created': 'now' })
-            this.setState({
-                tags: await data
-            })
-        } catch (error) {
-            console.log(error);
-        }
-
-    }
-    handlesOnChange(e) {
-        if (e.target.checked) {
-            this.setState({
-                isVisible: true
-            });
-
-        } else {
-            this.setState({
-                isVisible: false
-            });
-        }
-
-    }
-
+  
+   
 
     render() {
-        let tags = this.state.tags.map((tag, index) => {
-            let label = <label className={`custom-control-label badgeMod badge-info`} for={`customCheck${index}`} key={tag['_created']}>{tag.name}</label>;
-            let visibility = (this.state.isVisible) ? 'visible' : 'invisible';
-            let checkbox;
-            if (tag.name === 'other') {
-                checkbox = (<Fragment>
-                    <input type="checkbox" className="custom-control-input" id={`customCheck${index}`} key={index + tag['_created']} onChange={this.handlesOnChange} />
-                    {label}
-                    <input className={`form-control form-control-sm ${visibility}`} type="text" />
-                </Fragment>);
-            } else {
-                checkbox = (<Fragment>
-                    <input type="checkbox" className="custom-control-input" id={`customCheck${index}`} key={index + tag['_created']} />
-                    {label}
-                </Fragment>);
-            }
 
-            return (
-                <div className={`custom-control custom-checkbox  custom-control-inline`} key={index}>
-
-                    {checkbox}
-                </div>
-            );
-        })
         return (
         <Fragment>
             <Navbar tab='post' />
@@ -87,8 +30,7 @@ class BlogEdit extends Component {
                             <textarea className="form-control" placeholder="Blog " value={""}></textarea>
 
                         </div>
-                        <span className="d-block col-12"> Tags:</span>
-                        {tags}
+                        <Tags />
 
 
                     </form>
