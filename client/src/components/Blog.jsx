@@ -4,6 +4,7 @@ class Blog extends Component {
 
     constructor(props) {
         super(props);
+        
     }
 
 
@@ -35,7 +36,7 @@ class Blog extends Component {
                     {title}
                     <p className={truncate}> {blog.content}</p>
                     <small className="text-muted d-flex justify-content-end">{blog.date.toLocaleDateString()}</small>
-                    <p><Link className="btn text-white blogBtn" to={path} /* onClick={this.handlesOnClick.bind(this, st)} */>Read more &raquo;</Link></p>
+                    <p><Link className="btn text-white blogBtn" to={path} >Read more &raquo;</Link></p>
 
                 </div>
             </Fragment>
