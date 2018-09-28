@@ -8,7 +8,8 @@ class Tags extends Component {
             tags: [],
             isVisible: false,
             otherTag: '',
-            otherValue: ''
+            otherValue: '',
+            hasAlerted:false
 
         }
         this.handlesOnChange = this.handlesOnChange.bind(this);
@@ -45,8 +46,10 @@ class Tags extends Component {
             newTags.push(other);
             this.setState({
                 isVisible: true,
-                tags: newTags
+                tags: newTags,
+                hasAlerted:true
             });
+           if(!this.state.hasAlerted) alert('Press Enter to add tag.');
 
         } else if (target.name === 'other') {
             this.setState({
@@ -80,7 +83,9 @@ class Tags extends Component {
     }
 
     handlesOnKeyDown(e) {
+     
         if (e.key === 'Enter' && this.state.otherTag.length > 0) {
+            e.preventDefault();
             let url = 'http://localhost:3000/api/tags';
             let tag = {};
             tag.name = this.state.otherTag;
@@ -121,18 +126,19 @@ class Tags extends Component {
 
     render() {
         let tags = this.state.tags.map((tag, index) => {
-            let label = <label className={`custom-control-label badgeMod badge-info`} for={`customCheck${index}`} key={tag['_created']}>{tag.name}</label>;
+            let id = (tag.name !== 'other') ? tag.id : 'otherId';
+            let label = <label className={`custom-control-label badgeMod badge-info`} for={id} key={tag['_created']}>{tag.name}</label>;
             let visibility = (this.state.isVisible) ? 'visible' : 'invisible';
             let checkbox;
             if (tag.name === 'other') {
                 checkbox = (<Fragment>
-                    <input type="checkbox" className="custom-control-input" name={tag.name} id={`customCheck${index}`} key={index + tag['_created']} value={this.state.otherValue} onChange={this.handlesOnChange} />
+                    <input type="checkbox" className="custom-control-input" name={tag.name} id={id} key={index + tag['_created']} value={this.state.otherValue} onChange={this.handlesOnChange} />
                     {label}
-                    <input className={`form-control form-control-sm ${visibility}`} type="text" onKeyDown={this.handlesOnKeyDown} onChange={this.handlesNewTag} value={this.state.otherTag} />
+                    <input className={`form-control form-control-sm ${visibility}`} type="text" name='otherText' onKeyDown={this.handlesOnKeyDown} onChange={this.handlesNewTag} value={this.state.otherTag} />
                 </Fragment>);
             } else {
                 checkbox = (<Fragment>
-                    <input type="checkbox" className="custom-control-input" name={tag.name} checked={this.state.tags[index].checked} id={`customCheck${index}`} onChange={this.handlesOnChange} key={index + tag['_created']} />
+                    <input type="checkbox" className="custom-control-input" name={tag.name} checked={this.state.tags[index].checked} id={id} onChange={this.handlesOnChange} key={index + tag['_created']} />
                     {label}
                 </Fragment>);
             }
