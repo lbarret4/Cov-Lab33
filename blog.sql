@@ -71,7 +71,7 @@ VALUES  ('food'),
         ('movies'),
          ('tech');
 
-INSERT INTO blogstags(blogid,tagid)
+INSERT INTO blogtags(blogid,tagid)
 VALUES
 (1,1),
 (1,3),
